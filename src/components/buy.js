@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 
 
-class Cart extends React.Component {
+class Buy extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -34,7 +34,7 @@ class Cart extends React.Component {
         event.preventDefault();
         this.submitted = true;
         this.props.getData(this.state)
-        this.setState({ name: '', address: '', ph: '',formdata:true });
+        this.setState({ name: '', address: '', ph: '', formdata: true });
 
     }
 
@@ -46,23 +46,29 @@ class Cart extends React.Component {
     }
 
     handleCheckout = () => {
-        if (this.props.cart.length>0 && this.state.formdata===true) {
-            this.props.addOrders(this.props.cart)
+        if (this.props.itemsData.length > 0 && this.state.formdata===true) {
+            this.props.addOrders(this.props.itemsData)
             this.props.history.push('/myorders')
-        }
-        else if(this.props.cart.length===0){
+        } else {
             this.setState({
-                error:"No items in the cart Please add the items"
+                error: "Please Fill the Address Form before Checkout"
             })
         }
-        else{
-            this.setState({
-                error:"Please Fill the Address Form before Checkout"
-            })
-        }
+
     }
 
     render() {
+        let Items = this.props.itemsData.map(item => {
+            return (
+
+                <li className="collection-item avatar" key={item.id}>
+
+                    <span className="title">{item.title}</span>
+
+                </li>
+
+            )
+        })
         const form = <form onSubmit={this.handleFormSubmit}>
             <div className="label">
 
@@ -107,7 +113,7 @@ class Cart extends React.Component {
                 <button type='submit' className="btn btn-sm btn-primary">Save Address</button>{' '}
                 <button type='submit' onClick={this.editForm} className="btn btn-sm btn-primary">Edit Address</button>
             </div>
-            <br/>
+            <br />
 
         </form>
 
@@ -158,11 +164,16 @@ class Cart extends React.Component {
 
         </form>
 
+
+
+
+
+
         let total = 0;
         let Charge = 5;
         let Tax = 2;
 
-        this.props.cart.map(item => total += item.price)
+        this.props.itemsData.map(item => total += item.price)
 
 
         return <div><div className="row" >
@@ -170,7 +181,7 @@ class Cart extends React.Component {
             <div className='col-md-6'>
                 <br />
 
-                <h4 style={{ marginLeft: '50px',marginTop:'-20px' }}>Shipping Address</h4>
+                <h4 style={{ marginLeft: '50px', marginTop: '-20px' }}>Shipping Address</h4>
                 <div className="card" style={{ width: '80%', height: '85%', marginLeft: '50px' }}>
                     <div>
 
@@ -180,60 +191,38 @@ class Cart extends React.Component {
             </div>
 
             {''}
-            <div className='col-md-6'>
-
-                <br />
-                <h4 style={{ marginLeft: '50px',marginTop:'-20px' }}>Shopping Bag</h4>
-                <div className="card" style={{ width: '80%', height: '310px', marginLeft: '50px' }}>
-
-
-                    {this.props.cart.length>0?this.props.cart.map(item => {
-                        return (
             
-                            <li className="collection-item avatar" key={item.id}>
-                               
-                                <span className="title">{item.title}</span>
-            
-                            </li>
-            
-                        )
-                    }):<div style={{marginTop:'120px', color:'red'}}><h4>Cart Empty</h4></div>}
-
-
-                </div>
-            </div>
         </div>
             <br />
 
             <div className="row" style={{ marginTop: '50px', marginLeft: '800px' }}>
                 <div className='col-md-6' style={{ marginTop: '-50px' }}>
-                    <div style={{ width: '130%', height: '300%', marginLeft: '-650px',color:'red' }}>
+                    <div style={{ width: '130%', height: '300%', marginLeft: '-650px', color: 'red' }}>
 
 
-                       <strong>{this.state.error}</strong> 
+                        <strong>{this.state.error}</strong>
                     </div>
 
                 </div>
                 <div className='col-md-6' style={{ marginTop: '-70px' }}>
                     <div style={{ width: '80%', height: '300%', marginLeft: '0px' }}>
                         <h5><strong>Payment Info</strong></h5>
-                        {this.props.cart.length > 0 ?
-                            <div>
-                                <div style={{ textAlign: 'right' }}>
-                                    Items Price :{total} $
+                        {this.props.itemsData.length > 0 ? <div>
+                            <div style={{ textAlign: 'right' }}>
+                                Items Price :{total} $
                             </div>
-                                <div style={{ textAlign: 'right' }}>
-                                    Charge :{Charge} $
+                            <div style={{ textAlign: 'right' }}>
+                                Charge :{Charge} $
                             </div>
-                                <div style={{ textAlign: 'right' }}>
-                                    Tax :{Tax} $
+                            <div style={{ textAlign: 'right' }}>
+                                Tax :{Tax} $
                             </div>
 
-                                <div style={{ textAlign: 'right' }}>
-                                    <strong> Total : </strong><strong>{total + Charge + Tax} $</strong>
-                                </div>
+                            <div style={{ textAlign: 'right' }}>
+                                <strong> Total : </strong><strong>{total + Charge + Tax} $</strong>
+                            </div>
 
-                            </div> : <div>
+                        </div> : <div>
                                 <div style={{ textAlign: 'right' }}>
                                     Items Price :0 $
                         </div>
@@ -249,11 +238,10 @@ class Cart extends React.Component {
                                 </div>
 
                             </div>
-
                         }
 
+
                         <div style={{ width: '80%', height: '300%', marginTop: '0px' }}>
-                           
                             <button onClick={this.handleCheckout} className="btn btn-sm btn-primary">Checkout</button>{' '}
                             <button onClick={this.handleCancel} className="btn btn-sm btn-primary">Cancel</button>
 
@@ -274,8 +262,10 @@ function mapStateToProps(state) {
     console.log(state)
     return {
         cart: state.cartReducer.cartDetail,
+        itemsData: state.cartReducer.itemsdata,
         formdata: state.formReducer,
         orderdata: state.orderReducer
+
     }
 }
 function mapDispatchToProps(dispatch) {
@@ -290,10 +280,11 @@ function mapDispatchToProps(dispatch) {
                 type: "ORDERS", payload: data
             })
         }
+
     }
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cart)
+export default connect(mapStateToProps, mapDispatchToProps)(Buy)
 
 

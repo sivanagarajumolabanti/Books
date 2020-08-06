@@ -1,7 +1,8 @@
-import { ADD_TO_CART } from '../actions/types';
+import { ADD_TO_CART, Buy_Checkout } from '../actions/types';
 
 const cartdata = {
-    cartDetail: []
+    cartDetail: [],
+    itemsdata :[]
 }
 
 export const cartReducer = (state = cartdata, action) => {
@@ -9,7 +10,11 @@ export const cartReducer = (state = cartdata, action) => {
 
         case ADD_TO_CART:
             return {
-                cartDetail:[...state.cartDetail,action.payload]
+                cartDetail: [...state.cartDetail, action.payload]
+            };
+        case Buy_Checkout:
+            return {
+                itemsdata: [...state.itemsdata, action.payload]
             };
 
         default:

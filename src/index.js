@@ -10,14 +10,25 @@ import { cartReducer } from './reducers/cartreducer'
 import { formReducer } from './reducers/formreducer'
 import { orderReducer } from './reducers/myordersreducer'
 // import { cancelReducer } from './reducers/cancelReducer'
-import { createStore, combineReducers } from 'redux'
+// import thunk from 'redux-thunk';
+import createSagaMiddleware from "redux-saga";
+
+import { createStore, combineReducers,applyMiddleware } from 'redux'
+
+const sagaMiddleware = createSagaMiddleware();
+
+// const middlewares = [thunk];
+// const Middleware = 
+// const middlewares = [sagaMiddleware];
+//  sagaMiddleware.run()
 const appStore = createStore(combineReducers({
   bookReducer: bookReducer,
   cartReducer: cartReducer,
   formReducer: formReducer,
   orderReducer: orderReducer,
   // cancelReducer: cancelReducer
-}))
+},applyMiddleware(sagaMiddleware)))
+// sagaMiddleware.run();
 
 
 ReactDOM.render(<Provider store={appStore}>

@@ -5,6 +5,7 @@ import Header from './header'
 import DetailBook from './detailbook'
 import Cart from './cart'
 import Myorders from './myorders'
+import Buy from './buy'
 
 
 
@@ -20,6 +21,7 @@ class Container extends Component {
                         <Route exact path='/details/:id' component={DetailBook} />
                         <Route exact path='/cart' component={Cart} />
                         <Route exact path='/myorders' component={Myorders} />
+                        <Route exact path='/buy' component={Buy} />
                         
                     </Switch>
                 </div>

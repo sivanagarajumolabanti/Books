@@ -14,8 +14,8 @@ class Header extends Component {
       <nav className="navbar">
         <div className="container">
           <div className="navbar-header">
-            <Link className="navbar-brand" to="/">eCommerce Site |</Link>
-            {this.props.bookdetails.title}
+            <Link className="navbar-brand" to="/">eCommerce Site </Link>
+            <span style={{color:'blue'}}> {this.props.bookdetails.title}</span>
           </div>
 
           <div className="collapse navbar-collapse" >

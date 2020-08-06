@@ -1,4 +1,5 @@
 export const ADD_TO_CART = "ADD_TO_CART";
+export const Buy_Checkout = "Buy_Checkout";
 // export const ADD_SHIPPING = "ADD_SHIPPING";
 export const Form_Submit = "SUBMIT_FORM"
 export const ORDERS = "ORDERS"

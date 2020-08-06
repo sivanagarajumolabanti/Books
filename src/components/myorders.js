@@ -12,7 +12,18 @@ class Myorders extends React.Component {
 
 
     render() {
-        const myorders = this.props.orderdata.length >= 0 ? (
+        const date = new Date()
+        var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+        console.log(date)
+        let mon = monthNames[date.getMonth()]
+        console.log("The current month is " + monthNames[date.getMonth()]);
+        console.log("The current year is " + date.getFullYear());
+        const monthyear = mon + date.getFullYear();
+        const year = date.getFullYear();
+        let dmy = date.getDate()
+        const datemonthyear = dmy + mon + year
+        console.log("dmy",datemonthyear)
+        const myorders = this.props.orderdata.length > 0 ? (
 
             this.props.orderdata.map(item => {
                 return (
@@ -23,34 +34,40 @@ class Myorders extends React.Component {
                                     <div className="panel-title">
                                         <div className="row">
                                             <div className="col-xs-6">
-                                                <h5>Orders Placed :</h5>
+                                                <h5>Order Placed : {dmy}&nbsp;{mon}{','}{year}</h5>
+                                            </div>
+                                            <div className="col-xs-4">
+
+                                            </div>
+                                            <div className="col-xs-2">
+                                                <h5>Status: Delivered</h5>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div>
-                                    <div className="panel-body">
-                                        <div key={item.id}>
-                                            <div className="row">
-                                                <div className="col-xs-2"><img className="img-responsive" />
-                                                </div>
-                                                <div className="col-xs-4">
-                                                    <h4 className="product-name"><strong>{item.title}</strong></h4>
-                                                </div>
-                                                <div className="col-xs-6">
-                                                    <div className="col-xs-3 text-right">
-                                                        <h6><strong>{item.id} <span className="text-muted">x</span></strong></h6>
-                                                    </div>
 
-                                                </div>
-                                            </div>
-                                            <p>{item.title}</p>
-                                            <p>{item.id}</p>
-                                            <p>{item.userId}</p>
+
+
+
+                                <div className="row">
+                                    <div className="col-md-3">
+
+                                        <div className="img-wrap">
+                                            <img className="img-responsive" style={{ marginLeft: '50px', marginTop: '0px' }} src={item.imageLink} />
                                         </div>
+
+                                    </div>
+                                    <div className='col-md-3' style={{ marginTop: '20px' }}>
+                                        <h4><strong>Book Title :{item.title}</strong></h4>
+                                        <p>Book price :{item.price} </p>
+                                        <p>Book Auther Name :{item.author} </p>
+
                                     </div>
                                 </div>
+
+
+
                             </div>
                         </div>
                     </div>
@@ -59,8 +76,8 @@ class Myorders extends React.Component {
 
 
         ) : (
-                <div className="panel-body">
-                    <p>Cart is empty</p>
+                <div className="panel-body" style={{color:'red',paddingLeft:'500px',marginTop:'200px'}}>
+                   <h3>No Orders</h3> 
                 </div>
             )
 
