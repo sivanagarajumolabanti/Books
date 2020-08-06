@@ -5,3 +5,7 @@ export const Form_Submit = "SUBMIT_FORM"
 export const ORDERS = "ORDERS"
 export const CANCEL = "CANCEL"
 export const GET_BOOK_DETAILS = "GET_BOOK_DETAILS"
+export const CART = "CART"
+export const MY_ORDERS = "MY_ORDERS"
+// export const CANCEL = "CANCEL"
+

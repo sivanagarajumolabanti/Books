@@ -295,9 +295,9 @@ class Home extends React.Component {
             {books}
         </div><br />
             {this.state.expand ? <div style={{ textAlign: 'center' }}>
-                <Link style={{ textDecoration: 'none' }} onClick={this.showLess}>Show Less</Link>
+                <Link style={{ textDecoration: 'none' }} onClick={this.showLess}><strong>Show Less</strong></Link>
             </div> : <div style={{ textAlign: 'center' }}>
-                    <Link style={{ textDecoration: 'none' }} onClick={this.showMore}>Show More...</Link>
+                    <Link style={{ textDecoration: 'none' }} onClick={this.showMore}><strong>Show More...</strong></Link>
                 </div>
 
             }

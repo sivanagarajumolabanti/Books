@@ -9,6 +9,8 @@ import { bookReducer } from './reducers/reducer'
 import { cartReducer } from './reducers/cartreducer'
 import { formReducer } from './reducers/formreducer'
 import { orderReducer } from './reducers/myordersreducer'
+import { headerTitle } from './reducers/headerreducer'
+
 // import { cancelReducer } from './reducers/cancelReducer'
 // import thunk from 'redux-thunk';
 import createSagaMiddleware from "redux-saga";
@@ -26,6 +28,7 @@ const appStore = createStore(combineReducers({
   cartReducer: cartReducer,
   formReducer: formReducer,
   orderReducer: orderReducer,
+  headerTitle:headerTitle
   // cancelReducer: cancelReducer
 },applyMiddleware(sagaMiddleware)))
 // sagaMiddleware.run();
