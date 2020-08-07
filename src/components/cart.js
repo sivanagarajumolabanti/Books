@@ -19,11 +19,11 @@ class Cart extends React.Component {
         this.handleCancel = this.handleCancel.bind(this)
     }
 
-    editForm = () => {
-        this.setState({
-            edit: true
-        })
-    }
+    // editForm = () => {
+    //     this.setState({
+    //         edit: true
+    //     })
+    // }
 
     handleCancel = () => {
 
@@ -113,56 +113,56 @@ class Cart extends React.Component {
 
 
 
-        const editcode = <form onSubmit={this.handleFormSubmit}>
-            <div className="label">
+        // const editcode = <form onSubmit={this.handleFormSubmit}>
+        //     <div className="label">
 
-                <label htmlFor="name">Name : </label>
-                <input
-                    type="text"
-                    className="form-control"
-                    name="name"
-                    placeholder="Enter name"
-                    value={this.props.formdata.name}
-                    onChange={this.handleInputChange}
-                />
-            </div>
-            <div className="label">
+        //         <label htmlFor="name">Name : </label>
+        //         <input
+        //             type="text"
+        //             className="form-control"
+        //             name="name"
+        //             placeholder="Enter name"
+        //             value={this.props.formdata.name}
+        //             onChange={this.handleInputChange}
+        //         />
+        //     </div>
+        //     <div className="label">
 
-                <label htmlFor="address">Address : </label>
-                <textarea
-                    type="text"
-                    className="form-control"
-                    name="address"
-                    placeholder="Enter address"
-                    value={this.props.formdata.address}
-                    onChange={this.handleInputChange}
-                />
-            </div>
-            <div className="label">
+        //         <label htmlFor="address">Address : </label>
+        //         <textarea
+        //             type="text"
+        //             className="form-control"
+        //             name="address"
+        //             placeholder="Enter address"
+        //             value={this.props.formdata.address}
+        //             onChange={this.handleInputChange}
+        //         />
+        //     </div>
+        //     <div className="label">
 
-                <label htmlFor="ph">Phone Number : </label>
-                <input
-                    type="text"
-                    className="form-control"
-                    name="ph"
-                    placeholder="Enter Phone number"
-                    value={this.props.formdata.ph}
-                    onChange={this.handleInputChange}
-                />
-            </div>
-            <br />
-            <div>
-                <button type='submit' className="btn btn-sm btn-primary">Save Address</button>{' '}
+        //         <label htmlFor="ph">Phone Number : </label>
+        //         <input
+        //             type="text"
+        //             className="form-control"
+        //             name="ph"
+        //             placeholder="Enter Phone number"
+        //             value={this.props.formdata.ph}
+        //             onChange={this.handleInputChange}
+        //         />
+        //     </div>
+        //     <br />
+        //     <div>
+        //         <button type='submit' className="btn btn-sm btn-primary">Save Address</button>{' '}
 
-            </div>
+        //     </div>
 
-        </form>
+        // </form>
 
         let total = 0;
         let Charge = 5;
         let Tax = 2;
 
-        this.props.cart.map(item => total += item.price)
+        // this.props.cart.map(item => total += item.price)
 
 
         return <div><div className="row" >
@@ -174,7 +174,7 @@ class Cart extends React.Component {
                 <div className="card" style={{ width: '80%', height: '85%', marginLeft: '50px' }}>
                     <div>
 
-                        {this.state.edit ? editcode : form}
+                        {form}
                     </div>
                 </div>
             </div>
@@ -190,7 +190,7 @@ class Cart extends React.Component {
                     {this.props.cart.length>0?this.props.cart.map(item => {
                         return (
             
-                            <li className="collection-item avatar" key={item.id}>
+                            <li className="collection-item avatar">
                                
                                 <span className="title">{item.title}</span>
             

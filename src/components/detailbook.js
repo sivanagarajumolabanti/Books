@@ -6,8 +6,8 @@ import { ADD_TO_CART,GET_BOOK_DETAILS, Buy_Checkout} from '../actions/types';
 class DetailBook extends Component {
     constructor(props){
         super(props)
-        let id = this.props.match.params.id;
-        this.props.getDetails(id)
+        // let id = this.props.match.params.id;
+        // this.props.getDetails(id)
       }
     
     state = {
@@ -28,21 +28,22 @@ class DetailBook extends Component {
         })
     }
     render() {
+        
         //console.log("workflow detail",this.props.workflow)
-        console.log(this.props.bookdetails)
+        console.log(this.props.details)
         return <div className="container">
             <div className="row">
                 <div className="col-md-3">
                    
                         <div className="img-wrap">
-                            <img className="img-responsive" style={{marginLeft:'50px',marginTop:'30px'}} src={this.props.bookdetails.imageLink}/>
+                            <img className="img-responsive" style={{marginLeft:'50px',marginTop:'30px'}} src={this.props.details.imageLink}/>
                         </div>
 
                 </div>
                 <div className='col-md-3' style={{ marginTop: '20px' }}>
-                    <h5>Book Title :{this.props.bookdetails.title}</h5>
-                    <p>Book price :{this.props.bookdetails.price} </p>
-                    <p>Book Auther Name :{this.props.bookdetails.author} </p>
+                    <h5>Book Title :{this.props.details.title}</h5>
+                    <p>Book price :{this.props.details.price} </p>
+                    <p>Book Auther Name :{this.props.details.author} </p>
 
                     <div className="bottom-wrap">
 
@@ -51,18 +52,18 @@ class DetailBook extends Component {
                                 <span className="btn btn-success">Added to cart</span>
                             ) : (
 
-                                    <button className="btn btn-sm btn-primary" onClick={() => this.addCart(this.props.bookdetails)}>Add to Cart</button>
+                                    <button className="btn btn-sm btn-primary" onClick={() => this.addCart(this.props.details)}>Add to Cart</button>
                                 )
                         }
                         {' '}
-                        <button onClick={() => this.checkOut(this.props.bookdetails)} className="btn btn-sm btn-primary">Buy Book</button>
+                        <button onClick={() => this.checkOut(this.props.details)} className="btn btn-sm btn-primary">Buy Book</button>
                     </div>
                 </div>
             </div>
             <div className="row" >
                 <div className="card" style={{ backgroundColor: 'Lightgrey', width: '35%', height: '200px', marginLeft: '450px' }}>
                     <div className="">
-                    <h5>Book Description :{this.props.bookdetails.title}</h5>
+                    <h5>Book Description :{this.props.details.title}</h5>
                     </div>
 
                 </div>
@@ -72,10 +73,10 @@ class DetailBook extends Component {
 
     }
 }
-function mapStateToProps(state) {
-   
+function mapStateToProps(state,ownProps) {
+    let id = ownProps.match.params.id;
     return {
-        bookdetails: state.bookReducer,
+        details: state.bookReducer.find((w) => w.id === id),
         cartitems: state.cartReducer.cartDetail,
         
     }

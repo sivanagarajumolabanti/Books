@@ -8,16 +8,31 @@ class Header extends Component {
     super(props)
   }
 
-  componentDidMount() {
-    var path = window.location.pathname;
-    var pathArray = path.split('/');
-    console.log(pathArray)
-    var loc = pathArray[1]
-    console.log(loc)
-    this.props.titleHeader(loc)
-  }
+  // componentDidMount() {
+  //   var path = window.location.pathname;
+  //   var pathArray = path.split('/');
+  //   console.log(pathArray)
+  //   var loc = pathArray[1]
+  //   console.log(loc)
+  //   this.props.titleHeader(loc)
+  // }
   render() {
 
+    // var path = window.location.pathname;
+    // var pathArray = path.split('/');
+    // console.log(pathArray)
+    // var loc = pathArray[1]
+    // console.log(loc)
+    // // this.props.titleHeader(loc)
+    // let header;
+    // if (loc === 'cart') {
+    //   header = <>|Cart</>
+    // }else if(loc === 'myorders'){
+    //   header = <>|My Orders</>
+    // }
+    // else{
+    //   header = <> </>
+    // }
 
 
 
@@ -28,7 +43,7 @@ class Header extends Component {
           <div className="navbar-header">
             <Link className="navbar-brand" to="/">eCommerce Site </Link>
 
-            <div style={{ color: 'blue' }}> {this.props.title}</div>
+
           </div>
 
           <div className="collapse navbar-collapse" >
