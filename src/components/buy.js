@@ -230,7 +230,7 @@ function mapStateToProps(state) {
     console.log(state)
     return {
         cart: state.cartReducer.cartDetail,
-        itemsData: state.cartReducer.itemsdata,
+        itemsData: state.buyReducer.itemdata,
         formdata: state.formReducer,
         orderdata: state.orderReducer
 

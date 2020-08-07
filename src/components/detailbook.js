@@ -78,6 +78,7 @@ function mapStateToProps(state,ownProps) {
     return {
         details: state.bookReducer.find((w) => w.id === id),
         cartitems: state.cartReducer.cartDetail,
+        buyitem : state.buyReducer.itemdata
         
     }
 }
