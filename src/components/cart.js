@@ -261,6 +261,11 @@ function mapDispatchToProps(dispatch) {
             dispatch({
                 type: "ORDERS", payload: data
             })
+        },
+        removeCart: (data) => {
+            dispatch({
+                type: "REMOVE_CART", payload: data
+            })
         }
     }
 
