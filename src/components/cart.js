@@ -162,7 +162,7 @@ class Cart extends React.Component {
         let Charge = 5;
         let Tax = 2;
 
-        // this.props.cart.map(item => total += item.price)
+        this.props.cart.map(item => total += item.price)
 
 
         return <div><div className="row" >
