@@ -19,12 +19,6 @@ class Cart extends React.Component {
         this.handleCancel = this.handleCancel.bind(this)
     }
 
-    // editForm = () => {
-    //     this.setState({
-    //         edit: true
-    //     })
-    // }
-
     handleCancel = () => {
 
         window.location.href = '/cart'
@@ -34,8 +28,17 @@ class Cart extends React.Component {
         event.preventDefault();
         this.submitted = true;
         this.props.getData(this.state)
-        this.setState({ name: '', address: '', ph: '',formdata:true });
+        this.setState({
+            ph: '',
+            address: '',
+            name: '', formdata: true
+        });
 
+    }
+    editForm=()=>{
+        this.setState({
+            edit:true
+        });
     }
 
     handleInputChange = event => {
@@ -46,18 +49,18 @@ class Cart extends React.Component {
     }
 
     handleCheckout = () => {
-        if (this.props.cart.length>0 && this.state.formdata===true) {
+        if (this.props.cart.length > 0 && this.state.formdata === true) {
             this.props.addOrders(this.props.cart)
             this.props.history.push('/myorders')
         }
-        else if(this.props.cart.length===0){
+        else if (this.props.cart.length === 0) {
             this.setState({
-                error:"No items in the cart Please add the items"
+                error: "No items in the cart Please add the items"
             })
         }
-        else{
+        else {
             this.setState({
-                error:"Please Fill the Address Form before Checkout"
+                error: "Please Fill the Address Form before Checkout"
             })
         }
     }
@@ -107,56 +110,13 @@ class Cart extends React.Component {
                 <button type='submit' className="btn btn-sm btn-primary">Save Address</button>{' '}
                 <button type='submit' onClick={this.editForm} className="btn btn-sm btn-primary">Edit Address</button>
             </div>
-            <br/>
+            <br />
 
         </form>
 
+        
+     
 
-
-        // const editcode = <form onSubmit={this.handleFormSubmit}>
-        //     <div className="label">
-
-        //         <label htmlFor="name">Name : </label>
-        //         <input
-        //             type="text"
-        //             className="form-control"
-        //             name="name"
-        //             placeholder="Enter name"
-        //             value={this.props.formdata.name}
-        //             onChange={this.handleInputChange}
-        //         />
-        //     </div>
-        //     <div className="label">
-
-        //         <label htmlFor="address">Address : </label>
-        //         <textarea
-        //             type="text"
-        //             className="form-control"
-        //             name="address"
-        //             placeholder="Enter address"
-        //             value={this.props.formdata.address}
-        //             onChange={this.handleInputChange}
-        //         />
-        //     </div>
-        //     <div className="label">
-
-        //         <label htmlFor="ph">Phone Number : </label>
-        //         <input
-        //             type="text"
-        //             className="form-control"
-        //             name="ph"
-        //             placeholder="Enter Phone number"
-        //             value={this.props.formdata.ph}
-        //             onChange={this.handleInputChange}
-        //         />
-        //     </div>
-        //     <br />
-        //     <div>
-        //         <button type='submit' className="btn btn-sm btn-primary">Save Address</button>{' '}
-
-        //     </div>
-
-        // </form>
 
         let total = 0;
         let Charge = 5;
@@ -170,11 +130,23 @@ class Cart extends React.Component {
             <div className='col-md-6'>
                 <br />
 
-                <h4 style={{ marginLeft: '50px',marginTop:'-20px' }}>Shipping Address</h4>
-                <div className="card" style={{ width: '80%', height: '85%', marginLeft: '50px' }}>
+                <h4 style={{ marginLeft: '50px', marginTop: '-20px' }}>Shipping Address</h4>
+                <div className="card" style={{ width: '80%', height: '310px', marginLeft: '50px' }}>
                     <div>
 
-                        {form}
+                        {this.state.edit?<div style={{marginLeft:'130px',marginTop:'60px'}}>
+                            <table>
+                            <tr>
+                            <td>Name: {this.props.formdata.name}</td>
+                            </tr>
+                            <tr>
+                            <td>Address: {this.props.formdata.address}</td>
+                            </tr>
+                            <tr>
+                            <td>Phone Number: {this.props.formdata.ph}</td>
+                            </tr>
+                            </table>
+                        </div>:form}
                     </div>
                 </div>
             </div>
@@ -183,21 +155,21 @@ class Cart extends React.Component {
             <div className='col-md-6'>
 
                 <br />
-                <h4 style={{ marginLeft: '50px',marginTop:'-20px' }}>Shopping Bag</h4>
+                <h4 style={{ marginLeft: '50px', marginTop: '-20px' }}>Shopping Bag</h4>
                 <div className="card" style={{ width: '80%', height: '310px', marginLeft: '50px' }}>
 
 
-                    {this.props.cart.length>0?this.props.cart.map(item => {
+                    {this.props.cart.length > 0 ? this.props.cart.map(item => {
                         return (
-            
+
                             <li className="collection-item avatar">
-                               
+
                                 <span className="title">{item.title}</span>
-            
+
                             </li>
-            
+
                         )
-                    }):<div style={{marginTop:'120px', color:'red'}}><h4>Cart Empty</h4></div>}
+                    }) : <div style={{ marginTop: '120px', color: 'red' }}><h4>Cart Empty</h4></div>}
 
 
                 </div>
@@ -207,10 +179,10 @@ class Cart extends React.Component {
 
             <div className="row" style={{ marginTop: '50px', marginLeft: '800px' }}>
                 <div className='col-md-6' style={{ marginTop: '-50px' }}>
-                    <div style={{ width: '130%', height: '300%', marginLeft: '-650px',color:'red' }}>
+                    <div style={{ width: '130%', height: '300%', marginLeft: '-650px', color: 'red' }}>
 
 
-                       <strong>{this.state.error}</strong> 
+                        <strong>{this.state.error}</strong>
                     </div>
 
                 </div>
@@ -253,7 +225,7 @@ class Cart extends React.Component {
                         }
 
                         <div style={{ width: '80%', height: '300%', marginTop: '0px' }}>
-                           
+
                             <button onClick={this.handleCheckout} className="btn btn-sm btn-primary">Checkout</button>{' '}
                             <button onClick={this.handleCancel} className="btn btn-sm btn-primary">Cancel</button>
 

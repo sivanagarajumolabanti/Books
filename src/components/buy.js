@@ -119,54 +119,22 @@ class Buy extends React.Component {
 
 
 
-        const editcode = <form onSubmit={this.handleFormSubmit}>
-            <div className="label">
-
-                <label htmlFor="name">Name : </label>
-                <input
-                    type="text"
-                    className="form-control"
-                    name="name"
-                    placeholder="Enter name"
-                    value={this.props.formdata.name}
-                    onChange={this.handleInputChange}
-                />
-            </div>
-            <div className="label">
-
-                <label htmlFor="address">Address : </label>
-                <textarea
-                    type="text"
-                    className="form-control"
-                    name="address"
-                    placeholder="Enter address"
-                    value={this.props.formdata.address}
-                    onChange={this.handleInputChange}
-                />
-            </div>
-            <div className="label">
-
-                <label htmlFor="ph">Phone Number : </label>
-                <input
-                    type="text"
-                    className="form-control"
-                    name="ph"
-                    placeholder="Enter Phone number"
-                    value={this.props.formdata.ph}
-                    onChange={this.handleInputChange}
-                />
-            </div>
-            <br />
-            <div>
-                <button type='submit' className="btn btn-sm btn-primary">Save Address</button>{' '}
-
-            </div>
-
-        </form>
 
 
-
-
+        let editcode = <div style={{marginLeft:'130px',marginTop:'60px'}}>
+        <table>
+        <tr>
+        <td>Name: {this.props.formdata.name}</td>
+        </tr>
+        <tr>
+        <td>Address: {this.props.formdata.address}</td>
+        </tr>
+        <tr>
+        <td>Phone Number: {this.props.formdata.ph}</td>
+        </tr>
+        </table>
+    </div>
+        
 
 
         let total = 0;
@@ -182,10 +150,10 @@ class Buy extends React.Component {
                 <br />
 
                 <h4 style={{ marginLeft: '50px', marginTop: '-20px' }}>Shipping Address</h4>
-                <div className="card" style={{ width: '80%', height: '85%', marginLeft: '50px' }}>
+                <div className="card" style={{ width: '80%', height: '310px', marginLeft: '50px' }}>
                     <div>
 
-                        {this.state.edit ? editcode : form}
+                    {this.state.edit?editcode:form}
                     </div>
                 </div>
             </div>
